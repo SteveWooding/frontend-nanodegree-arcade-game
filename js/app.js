@@ -24,7 +24,7 @@ Enemy.prototype.update = function(dt) {
     this.x += (this.speed * dt);
 
     // When the enemy goes off the screen, wrap it back on the other side of the screen
-    if (this.x > 505) {  // TODO Get this from the canvas
+    if (this.x > ctx.canvas.clientWidth) {
         this.x = -101;   // TODO This is the width of the sprite. Can we get this from the sprite?
     }
 };
