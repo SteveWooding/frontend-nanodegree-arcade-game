@@ -4,6 +4,7 @@ var settings = {
     height: 606
 };
 
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -43,9 +44,23 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+var Player = function() {
+    // Set the image to use for the player
+    this.sprite = 'images/char-boy.png';
+
+    // Set the inital position of the player
+    this.x = 200;
+    this.y = 380;
+};
+
+// Draw the player on the screen
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
 
 
 // Now instantiate your objects.
@@ -56,8 +71,7 @@ for (var i = 0; i < 5; i++) {
 }
 
 // Place the player object in a variable called player
-
-
+var player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
