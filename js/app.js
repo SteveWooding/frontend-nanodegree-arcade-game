@@ -1,3 +1,9 @@
+// Game settings
+var settings = {
+    width: 505,
+    height: 606
+}
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -8,7 +14,7 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
 
     // Set the inital position of the enemy
-    this.x = 200;  // TODO Make appear randomly along the screen
+    this.x = Math.floor(Math.random() * settings.width);
     this.y = 231;  // TODO Make appear randomly on 1 of 3 stone block rows (65, 148 or 231)
 
     // Set the speed of the enemy
@@ -24,7 +30,7 @@ Enemy.prototype.update = function(dt) {
     this.x += (this.speed * dt);
 
     // When the enemy goes off the screen, wrap it back on the other side of the screen
-    if (this.x > ctx.canvas.clientWidth) {
+    if (this.x > settings.width) {
         this.x = -101;   // TODO This is the width of the sprite. Can we get this from the sprite?
     }
 };
