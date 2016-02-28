@@ -33,7 +33,8 @@ Enemy.prototype.update = function(dt) {
 
     // When the enemy goes off the screen, wrap it back on the other side of the screen
     if (this.x > settings.width) {
-        this.x = -101;   // TODO This is the width of the sprite. Can we get this from the sprite?
+        // Start the enemy off the left edge of the canvas so it comes on in motion
+        this.x = -Resources.get(this.sprite).width;
     }
 };
 
