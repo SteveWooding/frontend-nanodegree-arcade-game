@@ -1,8 +1,7 @@
-// Game settings
+// Game settings for both app.js and engine.js
 var settings = {
     width: 505,
-    height: 606,
-    enemy_y_positions: [65, 148, 231]
+    height: 606
 };
 
 // Enemies our player must avoid
@@ -16,8 +15,9 @@ var Enemy = function() {
 
     // Set the inital position of the enemy
     this.x = Math.floor(Math.random() * settings.width);
-    this.y = settings.enemy_y_positions[Math.floor(Math.random() *
-                                        settings.enemy_y_positions.length)];
+    var possibleYPositions = [65, 148, 231];
+    this.y = possibleYPositions[Math.floor(Math.random() *
+                                           possibleYPositions.length)];
 
     // Set the speed of the enemy to be a random value between 1 and 400
     this.speed = Math.floor(Math.random() * 400) + 1;
