@@ -19,8 +19,8 @@ var Enemy = function() {
     this.y = settings.enemy_y_positions[Math.floor(Math.random() *
                                         settings.enemy_y_positions.length)];
 
-    // Set the speed of the enemy
-    this.speed = 100; // TODO Make random
+    // Set the speed of the enemy to be a random value between 1 and 400
+    this.speed = Math.floor(Math.random() * 400) + 1;
 };
 
 // Update the enemy's position, required method for game
