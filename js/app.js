@@ -1,8 +1,9 @@
 // Game settings
 var settings = {
     width: 505,
-    height: 606
-}
+    height: 606,
+    enemy_y_positions: [65, 148, 231]
+};
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -15,7 +16,8 @@ var Enemy = function() {
 
     // Set the inital position of the enemy
     this.x = Math.floor(Math.random() * settings.width);
-    this.y = 231;  // TODO Make appear randomly on 1 of 3 stone block rows (65, 148 or 231)
+    this.y = settings.enemy_y_positions[Math.floor(Math.random() *
+                                        settings.enemy_y_positions.length)];
 
     // Set the speed of the enemy
     this.speed = 100; // TODO Make random
