@@ -65,6 +65,14 @@ var Player = function() {
     this.y = this.INIT_Y;
 };
 
+// Update state of player when wins or loses the a game
+Player.prototype.update = function() {
+    if (this.y < 0) {
+        this.x = this.INIT_X;
+        this.y = this.INIT_Y;
+    }
+};
+
 // Handle input from the player
 Player.prototype.handleInput = function(key) {
     if (key === 'left') {
