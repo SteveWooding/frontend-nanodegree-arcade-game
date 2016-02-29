@@ -57,11 +57,21 @@ var Player = function() {
     this.y = 380;
 };
 
+// Handle input from the player
+Player.prototype.handleInput = function(key) {
+    if (key === 'left') {
+        this.x -= 101;
+        // Stop the player going off the left edge of the screen
+        if (this.x < 0) {
+            this.x = 0;
+        }
+    }
+};
+
 // Draw the player on the screen
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
-
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -83,5 +93,5 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-    // player.handleInput(allowedKeys[e.keyCode]);
+    player.handleInput(allowedKeys[e.keyCode]);
 });
