@@ -56,6 +56,10 @@ var Player = function() {
     this.INIT_X = 202;
     this.INIT_Y = 405;
 
+    // Define the x and y steps the player is allowed to take
+    this.X_STEP = 101;
+    this.Y_STEP = 83;
+
     // Set the inital position of the player
     this.x = this.INIT_X;
     this.y = this.INIT_Y;
@@ -66,23 +70,23 @@ Player.prototype.handleInput = function(key) {
     if (key === 'left') {
         // Move player one square left, as long as player is on the screen
         if (this.x > 0) {
-            this.x -= 101;
+            this.x -= this.X_STEP;
         }
     }
     else if (key === 'right') {
         // Move player one square right, as long as player is on the screen
-        if (this.x < 404) {
-            this.x += 101;
+        if (this.x < 4 * this.X_STEP) {
+            this.x += this.X_STEP;
         }
     }
     else if (key === 'up') {
         if (this.y > 0) {
-            this.y -= 83;
+            this.y -= this.Y_STEP;
         }
     }
     else if (key === 'down') {
-        if (this.y < 405) {
-            this.y += 83;
+        if (this.y < this.INIT_Y) {
+            this.y += this.Y_STEP;
         }
     }
 };
