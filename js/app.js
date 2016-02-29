@@ -71,6 +71,16 @@ Player.prototype.handleInput = function(key) {
             this.x += 101;
         }
     }
+    else if (key === 'up') {
+        if (this.y > 0) {
+            this.y -= 83;
+        }
+    }
+    else if (key === 'down') {
+        if (this.y < 415) {
+            this.y += 83;
+        }
+    }
 };
 
 // Draw the player on the screen
