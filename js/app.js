@@ -52,9 +52,13 @@ var Player = function() {
     // Set the image to use for the player
     this.sprite = 'images/char-boy.png';
 
+    // Store the starting position of the player
+    this.INIT_X = 202;
+    this.INIT_Y = 405;
+
     // Set the inital position of the player
-    this.x = 202; // 2 * 101
-    this.y = 405;
+    this.x = this.INIT_X;
+    this.y = this.INIT_Y;
 };
 
 // Handle input from the player
