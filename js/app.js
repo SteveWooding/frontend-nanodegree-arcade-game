@@ -54,7 +54,7 @@ var Player = function() {
 
     // Set the inital position of the player
     this.x = 202; // 2 * 101
-    this.y = 380;
+    this.y = 405;
 };
 
 // Handle input from the player
@@ -77,7 +77,7 @@ Player.prototype.handleInput = function(key) {
         }
     }
     else if (key === 'down') {
-        if (this.y < 415) {
+        if (this.y < 405) {
             this.y += 83;
         }
     }
