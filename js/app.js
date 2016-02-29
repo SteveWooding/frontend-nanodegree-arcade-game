@@ -53,17 +53,22 @@ var Player = function() {
     this.sprite = 'images/char-boy.png';
 
     // Set the inital position of the player
-    this.x = 200;
+    this.x = 202; // 2 * 101
     this.y = 380;
 };
 
 // Handle input from the player
 Player.prototype.handleInput = function(key) {
     if (key === 'left') {
-        this.x -= 101;
-        // Stop the player going off the left edge of the screen
-        if (this.x < 0) {
-            this.x = 0;
+        // Move player one square left, as long as player is on the screen
+        if (this.x > 0) {
+            this.x -= 101;
+        }
+    }
+    else if (key === 'right') {
+        // Move player one square right, as long as player is on the screen
+        if (this.x < 404) {
+            this.x += 101;
         }
     }
 };
