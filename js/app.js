@@ -37,6 +37,15 @@ Enemy.prototype.update = function(dt) {
         // Start the enemy off the left edge of the canvas so it comes on in motion
         this.x = -Resources.get(this.sprite).width;
     }
+
+    // Collision detection with player
+    // First check if the enemy is on the same row as the player
+    if (this.y + 8 === player.y) {
+        // Then check if the enemy and player are close to each other
+        if (Math.abs(player.x - this.x) < 80) {
+            player.reset();
+        }
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -71,6 +80,12 @@ Player.prototype.update = function() {
         this.x = this.INIT_X;
         this.y = this.INIT_Y;
     }
+};
+
+// Reset the player back to the start position
+Player.prototype.reset = function() {
+    this.x = this.INIT_X;
+    this.y = this.INIT_Y;
 };
 
 // Handle input from the player
