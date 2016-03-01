@@ -70,15 +70,13 @@ var Player = function() {
     this.Y_STEP = 83;
 
     // Set the inital position of the player
-    this.x = this.INIT_X;
-    this.y = this.INIT_Y;
+    this.reset();
 };
 
 // Update state of player when wins or loses the a game
 Player.prototype.update = function() {
     if (this.y < 0) {
-        this.x = this.INIT_X;
-        this.y = this.INIT_Y;
+        this.reset();
     }
 };
 
