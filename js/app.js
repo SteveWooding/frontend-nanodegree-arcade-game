@@ -78,6 +78,7 @@ Player.prototype.update = function() {
     // If the player makes it to the water, reset their position
     if (this.y < 0) {
         this.reset();
+        allEnemies.push(new Enemy());
     }
 };
 
@@ -121,9 +122,7 @@ Player.prototype.render = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
-for (var i = 0; i < 5; i++) {
-    allEnemies.push(new Enemy());
-}
+allEnemies.push(new Enemy());
 
 // Place the player object in a variable called player
 var player = new Player();
