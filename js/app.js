@@ -75,6 +75,7 @@ var Player = function() {
 
 // Update state of player when wins or loses the a game
 Player.prototype.update = function() {
+    // If the player makes it to the water, reset their position
     if (this.y < 0) {
         this.reset();
     }
