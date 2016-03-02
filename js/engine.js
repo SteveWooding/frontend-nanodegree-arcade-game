@@ -160,6 +160,7 @@ var Engine = (function(global) {
      */
     function reset() {
         player.renderLevel();
+        player.renderLives();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -171,7 +172,8 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/Heart.png'
     ]);
     Resources.onReady(init);
 

@@ -43,7 +43,7 @@ Enemy.prototype.update = function(dt) {
     if (this.y + 8 === player.y) {
         // Then check if the enemy and player are close to each other
         if (Math.abs(player.x - this.x) < 80) {
-            player.reset();
+            player.loseLife();
         }
     }
 };
@@ -72,6 +72,10 @@ var Player = function() {
     // Keep track of the level the player is on and set it to 1 initially
     this.level = 1;
 
+    // Keep track of the number of lives a player has and set to an initial value
+    this.TOTAL_LIVES = 3;
+    this.numLives = this.TOTAL_LIVES;
+
     // Set the inital position of the player
     this.reset();
 };
@@ -91,6 +95,29 @@ Player.prototype.update = function() {
 Player.prototype.reset = function() {
     this.x = this.INIT_X;
     this.y = this.INIT_Y;
+};
+
+// Player loses a life
+Player.prototype.loseLife = function() {
+    this.numLives--;
+    if (this.numLives === 0) {
+        // If the player has no lives left now, reset the game level
+        // and number of lives
+        this.level = 1;
+        this.numLives = this.TOTAL_LIVES;
+        this.renderLevel();
+
+        // Get rid of all the enemies
+        var numEnemies = allEnemies.length;
+        for (var i = 0; i < numEnemies; i++) {
+            allEnemies.pop();
+        }
+
+        // Add one back with a new random speed and location
+        allEnemies.push(new Enemy());
+    }
+    this.renderLives();
+    this.reset();
 };
 
 // Handle input from the player
@@ -130,6 +157,16 @@ Player.prototype.renderLevel = function() {
     ctx.textAlign = "right";
     ctx.clearRect(300, 10, 205, 30);
     ctx.fillText("Level: " + this.level, settings.width, 40);
+};
+
+Player.prototype.renderLives = function() {
+    var heartImg = Resources.get('images/Heart.png');
+    var heartWidth = heartImg.width * 0.5;
+    var heartHeight = heartImg.height * 0.5;
+    ctx.clearRect(0, 0, 300, 49);
+    for (var n = 0; n < this.numLives; n++) {
+        ctx.drawImage(heartImg, n * heartImg.width * 0.5, -20, heartWidth, heartHeight);
+    }
 };
 
 
