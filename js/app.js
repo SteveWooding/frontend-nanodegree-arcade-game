@@ -153,9 +153,9 @@ Player.prototype.render = function() {
 
 // Draw the level number on the canvas
 Player.prototype.renderLevel = function() {
-    ctx.font = "30px sans-serif";
+    ctx.font = "30px Impact";
     ctx.textAlign = "right";
-    ctx.clearRect(300, 10, 205, 30);
+    ctx.clearRect(300, 10, 205, 38);
     ctx.fillText("Level: " + this.level, settings.width, 40);
 };
 
