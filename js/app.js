@@ -69,6 +69,9 @@ var Player = function() {
     this.X_STEP = 101;
     this.Y_STEP = 83;
 
+    // Keep track of the level the player is on and set it to 1 initially
+    this.level = 1;
+
     // Set the inital position of the player
     this.reset();
 };
@@ -78,7 +81,9 @@ Player.prototype.update = function() {
     // If the player makes it to the water, reset their position
     if (this.y < 0) {
         this.reset();
-        allEnemies.push(new Enemy());
+        allEnemies.push(new Enemy());  // Add an extra enemy
+        this.level++;
+        this.renderLevel();
     }
 };
 
@@ -118,6 +123,15 @@ Player.prototype.handleInput = function(key) {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+// Draw the level number on the canvas
+Player.prototype.renderLevel = function() {
+    ctx.font = "30px sans-serif";
+    ctx.textAlign = "right";
+    ctx.clearRect(300, 10, 205, 30);
+    ctx.fillText("Level: " + this.level, settings.width, 40);
+};
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
