@@ -159,6 +159,7 @@ Player.prototype.renderLevel = function() {
     ctx.fillText("Level: " + this.level, settings.width, 40);
 };
 
+// Draw hearts on the screen corresponding to the number of lives the player has left
 Player.prototype.renderLives = function() {
     var heartImg = Resources.get('images/Heart.png');
     var heartWidth = heartImg.width * 0.5;
