@@ -76,6 +76,9 @@ var Player = function() {
     this.TOTAL_LIVES = 3;
     this.numLives = this.TOTAL_LIVES;
 
+    // Keep track of the highest level the player has achived
+    this.highestLevel = 1;
+
     // Set the inital position of the player
     this.reset();
 };
@@ -103,6 +106,9 @@ Player.prototype.loseLife = function() {
     if (this.numLives === 0) {
         // If the player has no lives left now, reset the game level
         // and number of lives
+        if (this.level > this.highestLevel) {
+            this.highestLevel = this.level;
+        }
         this.level = 1;
         this.numLives = this.TOTAL_LIVES;
         this.renderLevel();
@@ -154,6 +160,7 @@ Player.prototype.render = function() {
 // Draw the level number on the canvas
 Player.prototype.renderLevel = function() {
     ctx.font = "30px Impact";
+    ctx.fillStyle = "black";
     ctx.textAlign = "right";
     ctx.clearRect(300, 10, 205, 38);
     ctx.fillText("Level: " + this.level, settings.width, 40);
@@ -169,6 +176,14 @@ Player.prototype.renderLives = function() {
         ctx.drawImage(heartImg, n * heartImg.width * 0.5, -20, heartWidth, heartHeight);
     }
 };
+
+// Draw the highscore
+Player.prototype.renderHighscore = function() {
+    ctx.font = "30px Impact";
+    ctx.textAlign = "left";
+    ctx.fillStyle = "white";
+    ctx.fillText("Highest Level: " + this.highestLevel, 10, settings.height - 30);
+}
 
 
 // Now instantiate your objects.

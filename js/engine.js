@@ -137,6 +137,7 @@ var Engine = (function(global) {
         }
 
         renderEntities();
+        player.renderHighscore();
     }
 
     /* This function is called by the render function and is called on each game
