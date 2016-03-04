@@ -77,7 +77,7 @@ var Player = function() {
     this.numLives = this.TOTAL_LIVES;
 
     // Keep track of the highest level the player has achived
-    this.highestLevel = 1;
+    this.highestLevel = getHighscore();
 
     // Set the inital position of the player
     this.reset();
@@ -108,6 +108,7 @@ Player.prototype.loseLife = function() {
         // and number of lives
         if (this.level > this.highestLevel) {
             this.highestLevel = this.level;
+            storeHighscore(this.highestLevel);
         }
         this.level = 1;
         this.numLives = this.TOTAL_LIVES;
@@ -184,6 +185,27 @@ Player.prototype.renderHighscore = function() {
     ctx.fillStyle = "white";
     ctx.fillText("Highest Level: " + this.highestLevel, 10, settings.height - 30);
 }
+
+// Store the highscore in browser storage
+var storeHighscore = function(highscore) {
+    if (typeof(Storage) !== "undefined") {
+        localStorage.highscore = highscore;
+    }
+};
+
+// Get highscore from browser storeage
+var getHighscore = function() {
+    if (typeof(Storage) !== "undefined") {
+        if (localStorage.highscore) {
+            return Number(localStorage.highscore);
+        }
+        else {
+            return 1;
+        }
+    } else {
+        return 1;
+    }
+};
 
 
 // Now instantiate your objects.
