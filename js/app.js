@@ -14,7 +14,7 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 
-    // Set the inital position of the enemy
+    // Set the initial position of the enemy
     this.x = Math.floor(Math.random() * settings.width);
     var possibleYPositions = [65, 148, 231];
     this.y = possibleYPositions[Math.floor(Math.random() *
@@ -76,10 +76,10 @@ var Player = function() {
     this.TOTAL_LIVES = 3;
     this.numLives = this.TOTAL_LIVES;
 
-    // Keep track of the highest level the player has achived
+    // Keep track of the highest level the player has achieved
     this.highestLevel = getHighscore();
 
-    // Set the inital position of the player
+    // Set the initial position of the player
     this.reset();
 };
 
@@ -178,7 +178,7 @@ Player.prototype.renderLives = function() {
     }
 };
 
-// Draw the highscore
+// Draw the high score
 Player.prototype.renderHighscore = function() {
     ctx.font = "30px Impact";
     ctx.textAlign = "left";
@@ -186,14 +186,14 @@ Player.prototype.renderHighscore = function() {
     ctx.fillText("Highest Level: " + this.highestLevel, 10, settings.height - 30);
 }
 
-// Store the highscore in browser storage
+// Store the high score in browser storage
 var storeHighscore = function(highscore) {
     if (typeof(Storage) !== "undefined") {
         localStorage.highscore = highscore;
     }
 };
 
-// Get highscore from browser storeage
+// Get high score from browser storage
 var getHighscore = function() {
     if (typeof(Storage) !== "undefined") {
         if (localStorage.highscore) {
