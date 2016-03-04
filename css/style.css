@@ -1,3 +1,9 @@
 body {
+    font-family: sans-serif;
     text-align: center;
+}
+
+.about {
+    margin-left: 20%;
+    margin-right: 20%;
 }
