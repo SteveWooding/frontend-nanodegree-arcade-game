@@ -5,7 +5,11 @@ var settings = {
 };
 
 
-// Enemies our player must avoid
+/**
+ * Initialises an enemy object
+ * @class
+ * @classdesc Represents an enemy in the game
+ */
 var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -24,8 +28,11 @@ var Enemy = function() {
     this.speed = Math.floor(Math.random() * 400) + 20;
 };
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+/**
+ * Update the enemy's position, required method for game.
+ *
+ * @param {number} dt - A time delta between ticks
+ */
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
@@ -48,15 +55,19 @@ Enemy.prototype.update = function(dt) {
     }
 };
 
-// Draw the enemy on the screen, required method for game
+/**
+ * Draw the enemy on the screen, required method for game.
+ */
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+/**
+ * Initialises a player object
+ * @class
+ * @classdesc Represents the player in the game
+ */
 var Player = function() {
     // Set the image to use for the player
     this.sprite = 'images/char-boy.png';
@@ -83,7 +94,9 @@ var Player = function() {
     this.reset();
 };
 
-// Update state of player when wins or loses the a game
+/**
+ * Update state of player when wins or loses the a game
+ */
 Player.prototype.update = function() {
     // If the player makes it to the water, reset their position
     if (this.y < 0) {
@@ -94,13 +107,17 @@ Player.prototype.update = function() {
     }
 };
 
-// Reset the player back to the start position
+/**
+ * Reset the player back to the start position
+ */
 Player.prototype.reset = function() {
     this.x = this.INIT_X;
     this.y = this.INIT_Y;
 };
 
-// Player loses a life
+/**
+ * Player loses a life. If no lives left, game is reset.
+ */
 Player.prototype.loseLife = function() {
     this.numLives--;
     if (this.numLives === 0) {
@@ -127,7 +144,11 @@ Player.prototype.loseLife = function() {
     this.reset();
 };
 
-// Handle input from the player
+/**
+ * Handle input from the player
+ *
+ * @param {string} key - One of the 4 arrow keys
+ */
 Player.prototype.handleInput = function(key) {
     if (key === 'left') {
         // Move player one square left, as long as player is on the screen
@@ -153,12 +174,16 @@ Player.prototype.handleInput = function(key) {
     }
 };
 
-// Draw the player on the screen
+/**
+ * Draw the player on the screen
+ */
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Draw the level number on the canvas
+/**
+ * Draw the level number on the canvas
+ */
 Player.prototype.renderLevel = function() {
     ctx.font = "30px Impact";
     ctx.fillStyle = "black";
@@ -167,7 +192,9 @@ Player.prototype.renderLevel = function() {
     ctx.fillText("Level: " + this.level, settings.width, 40);
 };
 
-// Draw hearts on the screen corresponding to the number of lives the player has left
+/**
+ * Draw hearts on the screen corresponding to the number of lives the player has left.
+ */
 Player.prototype.renderLives = function() {
     var heartImg = Resources.get('images/Heart.png');
     var heartWidth = heartImg.width * 0.5;
@@ -178,7 +205,9 @@ Player.prototype.renderLives = function() {
     }
 };
 
-// Draw the high score
+/**
+ * Draw the high score in the bottom left og the screen.
+ */
 Player.prototype.renderHighscore = function() {
     ctx.font = "30px Impact";
     ctx.textAlign = "left";
@@ -186,14 +215,20 @@ Player.prototype.renderHighscore = function() {
     ctx.fillText("Highest Level: " + this.highestLevel, 10, settings.height - 30);
 }
 
-// Store the high score in browser storage
+
+/**
+ * Store the high score in browser storage
+ */
 var storeHighscore = function(highscore) {
     if (typeof(Storage) !== "undefined") {
         localStorage.highscore = highscore;
     }
 };
 
-// Get high score from browser storage
+
+/**
+ * Get high score from browser storage
+ */
 var getHighscore = function() {
     if (typeof(Storage) !== "undefined") {
         if (localStorage.highscore) {
