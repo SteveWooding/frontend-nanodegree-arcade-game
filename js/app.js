@@ -228,3 +228,10 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+// Prevent the up and down arrow keys from scrolling the browser window
+window.addEventListener('keydown', function(e) {
+    if (e.keyCode === 38 || e.keyCode === 40) {
+        e.preventDefault();
+    }
+});
