@@ -14,6 +14,9 @@ var GameEntity = function() {
 
 };
 
+/**
+ * Draw a game entity (e.g. player, enemy, etc) on the screen.
+ */
 GameEntity.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -23,6 +26,7 @@ GameEntity.prototype.render = function() {
  * Initialises an enemy object.
  * @class
  * @classdesc Represents an enemy in the game
+ * @extends GameEntity
  */
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -78,6 +82,7 @@ Enemy.prototype.update = function(dt) {
  * Initialises a player object
  * @class
  * @classdesc Represents the player in the game
+ * @extends GameEntity
  */
 var Player = function() {
     // Set the image to use for the player
@@ -104,6 +109,10 @@ var Player = function() {
     // Set the initial position of the player
     this.reset();
 };
+
+// Setup Player to inherit from GameEntity
+Player.prototype = Object.create(GameEntity.prototype);
+Player.prototype.constructor = Player;
 
 /**
  * Update state of player when wins or loses the a game
@@ -183,13 +192,6 @@ Player.prototype.handleInput = function(key) {
             this.y += this.Y_STEP;
         }
     }
-};
-
-/**
- * Draw the player on the screen
- */
-Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 /**
