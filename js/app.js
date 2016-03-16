@@ -29,20 +29,33 @@ GameEntity.prototype.render = function() {
  * @extends GameEntity
  */
 var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+    /**
+     * Define the image to use for the enemies.
+     * @type {string}
+     */
     this.sprite = 'images/enemy-bug.png';
 
-    // Set the initial position of the enemy
+    /**
+     * Initial position on the x-axis of the enemy.
+     * @type {number}
+     */
     this.x = Math.floor(Math.random() * settings.width);
+
+    // Set the possible positions of enemies on the y-axis.
     var possibleYPositions = [65, 148, 231];
+
+    /**
+     * Initial position on the y-axis of the enemy.
+     * @type {number}
+     */
     this.y = possibleYPositions[Math.floor(Math.random() *
                                            possibleYPositions.length)];
 
-    // Set the speed of the enemy to be a random value between 20 and 419
+    /**
+     * Set the speed of the enemy to be a random value between 20 and 419.
+     * @type {number}
+     */
     this.speed = Math.floor(Math.random() * 400) + 20;
 };
 
@@ -85,25 +98,59 @@ Enemy.prototype.update = function(dt) {
  * @extends GameEntity
  */
 var Player = function() {
-    // Set the image to use for the player
+    /**
+     * Set the image to use for the player
+     * @type {string}
+     */
     this.sprite = 'images/char-boy.png';
 
-    // Store the starting position of the player
+    /**
+     * Store the starting position of the player (x-coordinate)
+     * @type {number}
+     */
     this.INIT_X = 202;
+
+    /**
+     * Store the starting position of the player (y-coordinate)
+     * @type {number}
+     */
     this.INIT_Y = 405;
 
-    // Define the x and y steps the player is allowed to take
+    /**
+     * Define the step length in the x direction the player is allowed to take.
+     * @type {number}
+     */
     this.X_STEP = 101;
+
+    /**
+     * Define the step length in the y direction the player is allowed to take.
+     * @type {number}
+     */
     this.Y_STEP = 83;
 
-    // Keep track of the level the player is on and set it to 1 initially
+    /**
+     * Keep track of the level the player is on and set it to 1 initially
+     * @type {number}
+     */
     this.level = 1;
 
-    // Keep track of the number of lives a player has and set to an initial value
+    /**
+     * Total number of lives a player is allowed.
+     * @type {number}
+     */
     this.TOTAL_LIVES = 3;
+
+    /**
+     * Keep track of the number of lives a player has left. Initially set to
+     * the total number of lives.
+     * @type {number}
+     */
     this.numLives = this.TOTAL_LIVES;
 
-    // Keep track of the highest level the player has achieved
+    /**
+     * Keep track of the highest level the player has achieved. Get this
+     * initially from the browser local storage, if supported.
+     */
     this.highestLevel = getHighscore();
 
     // Set the initial position of the player
