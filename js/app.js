@@ -6,7 +6,21 @@ var settings = {
 
 
 /**
- * Initialises an enemy object
+ * Initialises a game entity object.
+ * @class
+ * @classdesc Parent class for all game entities.
+ */
+var GameEntity = function() {
+
+};
+
+GameEntity.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+
+/**
+ * Initialises an enemy object.
  * @class
  * @classdesc Represents an enemy in the game
  */
@@ -27,6 +41,10 @@ var Enemy = function() {
     // Set the speed of the enemy to be a random value between 20 and 419
     this.speed = Math.floor(Math.random() * 400) + 20;
 };
+
+// Setup Enemy to inherit from GameEntity
+Enemy.prototype = Object.create(GameEntity.prototype);
+Enemy.prototype.constructor = Enemy;
 
 /**
  * Update the enemy's position, required method for game.
@@ -53,13 +71,6 @@ Enemy.prototype.update = function(dt) {
             player.loseLife();
         }
     }
-};
-
-/**
- * Draw the enemy on the screen, required method for game.
- */
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 
