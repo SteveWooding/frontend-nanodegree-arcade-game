@@ -8,7 +8,7 @@ var settings = {
 /**
  * Initialises a game entity object.
  * @class
- * @classdesc Parent class for all game entities.
+ * @classdesc Parent abstract class for all game entities.
  */
 var GameEntity = function() {
 
@@ -31,6 +31,14 @@ GameEntity.prototype.render = function() {
         var height = spriteImage.height * this.scale;
         ctx.drawImage(spriteImage, this.x, this.y, width, height);
     }
+};
+
+/**
+ * Reset the player back to the start position
+ */
+GameEntity.prototype.reset = function() {
+    this.x = this.INIT_X;
+    this.y = this.INIT_Y;
 };
 
 
@@ -187,14 +195,6 @@ Player.prototype.update = function() {
 };
 
 /**
- * Reset the player back to the start position
- */
-Player.prototype.reset = function() {
-    this.x = this.INIT_X;
-    this.y = this.INIT_Y;
-};
-
-/**
  * Player loses a life. If no lives left, game is reset.
  */
 Player.prototype.loseLife = function() {
@@ -221,6 +221,7 @@ Player.prototype.loseLife = function() {
     }
     this.renderLives();
     this.reset();
+    gem.reset();
 };
 
 /**
