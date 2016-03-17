@@ -356,8 +356,8 @@ Gem.prototype.constructor = Gem;
 Gem.prototype.update = function() {
     if (this.x === this.INIT_X) {
         // If the gem is not on screen, make it randomly appear,
-        // if above a certain level.
-        if (player.level > 3 && Math.random() < 0.001) {
+        // if move than a certain number of enemies are on the screen.
+        if (allEnemies.length > 3 && Math.random() < 0.001) {
             this.x = this.xValues[Math.floor(Math.random() * this.xValues.length)];
             this.y = this.yValues[Math.floor(Math.random() * this.yValues.length)];
         }
