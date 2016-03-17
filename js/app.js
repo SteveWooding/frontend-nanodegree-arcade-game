@@ -273,7 +273,49 @@ Player.prototype.renderHighscore = function() {
     ctx.textAlign = "left";
     ctx.fillStyle = "white";
     ctx.fillText("Highest Level: " + this.highestLevel, 10, settings.height - 30);
-}
+};
+
+
+/**
+ * Initialise a gem object.
+ * @class
+ * @classdesc Represents a gem in the game.
+ */
+var Gem = function() {
+    /**
+     * Define the image to use for the gem.
+     * @type {string}
+     */
+    this.sprite = 'images/Gem Green.png';
+
+    /**
+     * Set the off-screen position on the x-axis.
+     * @type {number}
+     */
+    this.INIT_X = 100;
+
+    /**
+     * Set the off-screen position on the y-axis.
+     * @type {number}
+     */
+    this.INIT_Y = 140;
+
+    /**
+     * Current position of the gem on the x-axis.
+     * @type {number}
+     */
+    this.x = this.INIT_X;
+
+    /**
+     * Current position of the gem on the y-axis.
+     * @type {number}
+     */
+    this.y = this.INIT_Y;
+};
+
+// Gem inherits from the GameEntity Class
+Gem.prototype = Object.create(GameEntity.prototype);
+Gem.prototype.constructor = Gem;
 
 
 /**
@@ -310,6 +352,9 @@ allEnemies.push(new Enemy());
 
 // Place the player object in a variable called player
 var player = new Player();
+
+// Create a gem object, which will move on and off the screen.
+var gem = new Gem();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
