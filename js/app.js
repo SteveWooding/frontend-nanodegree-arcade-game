@@ -188,6 +188,7 @@ Player.prototype.update = function() {
     // If the player makes it to the water, reset their position
     if (this.y < 0) {
         this.reset();
+        gem.reset();
         allEnemies.push(new Enemy());  // Add an extra enemy
         this.level++;
         this.renderLevel();
@@ -252,6 +253,7 @@ Player.prototype.handleInput = function(key) {
             this.y += this.Y_STEP;
         }
     }
+    console.log(this.x, this.y);
 };
 
 /**
@@ -355,9 +357,20 @@ Gem.prototype.update = function() {
     if (this.x === this.INIT_X) {
         // If the gem is not on screen, make it randomly appear,
         // if above a certain level.
-        if (player.level > 3 && Math.random() < 0.01) {
+        if (player.level > 3 && Math.random() < 0.001) {
             this.x = this.xValues[Math.floor(Math.random() * this.xValues.length)];
             this.y = this.yValues[Math.floor(Math.random() * this.yValues.length)];
+        }
+    }
+    else {
+        // Collision detection with player
+        if (this.y - 24 === player.y && this.x - 14 === player.x) {
+            // Remove an enemy if the player collects the gem and there are
+            // more than 3 enemies.
+            if (allEnemies.length > 3) {
+                allEnemies.pop();
+            }
+            this.reset();
         }
     }
 };
