@@ -310,13 +310,13 @@ var Gem = function() {
      * Set the off-screen position on the x-axis.
      * @type {number}
      */
-    this.INIT_X = 115;
+    this.INIT_X = -100;
 
     /**
      * Set the off-screen position on the y-axis.
      * @type {number}
      */
-    this.INIT_Y = 180;
+    this.INIT_Y = -100;
 
     /**
      * Current position of the gem on the x-axis.
@@ -329,6 +329,18 @@ var Gem = function() {
      * @type {number}
      */
     this.y = this.INIT_Y;
+
+    /**
+     * Valid values for this.x (given a scale of 0.7).
+     * @type {number}
+     */
+    this.xValues = [14, 115, 216, 317, 418];
+
+    /**
+     * Valid values for this.y (given a scale of 0.7).
+     * @type {number}
+     */
+    this.yValues = [97, 180, 263];
 };
 
 // Gem inherits from the GameEntity Class
