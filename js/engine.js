@@ -154,7 +154,7 @@ var Engine = (function(global) {
 
         player.render();
 
-        gem.render();
+        gem.render(0.7);
     }
 
     /* This function does nothing but it could have been a good place to

@@ -17,8 +17,20 @@ var GameEntity = function() {
 /**
  * Draw a game entity (e.g. player, enemy, etc) on the screen.
  */
-GameEntity.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+GameEntity.prototype.render = function(scale) {
+    // If scale is not given, set it to 1
+    scale = scale || 1;
+
+    if (scale === 1) {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+    else {
+        // Scale the sprite, if required.
+        var spriteImage = Resources.get(this.sprite);
+        var width = spriteImage.width * scale;
+        var height = spriteImage.height * scale;
+        ctx.drawImage(spriteImage, this.x, this.y, width, height);
+    }
 };
 
 
@@ -292,13 +304,13 @@ var Gem = function() {
      * Set the off-screen position on the x-axis.
      * @type {number}
      */
-    this.INIT_X = 100;
+    this.INIT_X = 115;
 
     /**
      * Set the off-screen position on the y-axis.
      * @type {number}
      */
-    this.INIT_Y = 140;
+    this.INIT_Y = 180;
 
     /**
      * Current position of the gem on the x-axis.
