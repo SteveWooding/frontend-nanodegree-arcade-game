@@ -173,8 +173,17 @@ var Player = function() {
      */
     this.highestLevel = getHighscore();
 
-    // Set the initial position of the player
-    this.reset();
+    /**
+     * Current position of the player on the x-axis.
+     * @type {number}
+     */
+    this.x = this.INIT_X;
+
+    /**
+     * Current position of the player on the y-axis.
+     * @type {number}
+     */
+    this.y = this.INIT_Y;
 };
 
 // Setup Player to inherit from GameEntity
