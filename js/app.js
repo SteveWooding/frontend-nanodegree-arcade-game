@@ -372,6 +372,11 @@ Gem.prototype.update = function() {
             }
             this.reset();
         }
+
+        // Randomly remove the gem
+        if (Math.random() < 0.001) {
+            this.reset();
+        }
     }
 };
 
