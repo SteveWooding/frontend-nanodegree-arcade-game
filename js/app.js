@@ -347,6 +347,20 @@ var Gem = function() {
 Gem.prototype = Object.create(GameEntity.prototype);
 Gem.prototype.constructor = Gem;
 
+/**
+ * Update the gem object.
+ */
+Gem.prototype.update = function() {
+    if (this.x === this.INIT_X) {
+        // If the gem is not on screen, make it randomly appear,
+        // if above a certain level.
+        if (player.level > 3 && Math.random() < 0.01) {
+            this.x = this.xValues[Math.floor(Math.random() * this.xValues.length)];
+            this.y = this.yValues[Math.floor(Math.random() * this.yValues.length)];
+        }
+    }
+};
+
 
 /**
  * Store the high score in browser storage
