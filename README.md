@@ -19,18 +19,58 @@ You will need a modern web browser that supports HTML5 to play this game.
 You also need a keyboard (the arrow keys allow you to move the player around
 the screen).
 
+For compiling the JavaScript files you need the Java 7 runtime. The Google
+Closure Compiler is supplied for your convenience.
+
 ## Project contents
 This project consists for the following files:
 
-* index.html - load this file in a web browser to play the game
-* js/app.js - main JS file that defines the enemy and player classes
-* js/engine.js - contains the main game loop and manages game rendering
-* js/resources.js - handles the loading and caching of graphics
-* images/ - directory containing game graphics
-* css/style.css - style sheet for the web page holding the game
+* `index.html` - load this file in a web browser to play the game
+* `js/app.js` - main JS file that instantiates the enemy and player objects
+* `js/enemy.js` - defines the Enemy class
+* `js/engine.js` - contains the main game loop and manages game rendering
+* `js/gameentity.js` - abstract class for all game entities
+* `js/gameloader.js` - loads compiled or source JavaScript files
+* `js/gem.js` - defines the Gem class for the behavior of gems
+* `js/player.js` - defines the Player class
+* `js/resources.js` - handles the loading and caching of graphics
+* `js/build/compile.sh` - compiles JavaScript files to single optimised file
+* `js/libs/closure-complier/` - Google's Closure Compiler is included here
+* `images/` - directory containing game graphics
+* `css/style.css` - style sheet for the web page holding the game
+
+## Compiling JavaScript files
+The game consists of JavaScript source code files in an unoptimised form, with
+one class per file. When you are ready to deploy the game into a production
+environment (maybe after you've made some changes), it is recommended to compile
+the JavaScript files into a single optimised file, which is smaller for users
+to download.
+
+To compile the JavaScript on Linux:
+
+```bash
+cd js/build
+./compile.sh
+```
+
+This places the compiled JavaScript file `game.min.js` in the `js/` directory.
+If you want to go back to development mode, simply delete this file.
+
+On Windows, take the command in `compile.sh` and run it after changing the
+forward slashes for backward slashes.
 
 ## How to Run the Project
-Load the `index.html` in a modern web browser that supports HTML5.
+Load the `index.html` in a modern web browser that supports HTML5, served from
+a web server.
+
+If you want to test the game locally and have Python installed, do the following
+in the directory where `index.html` is:
+
+```bash
+python -m SimpleHTTPServer
+```
+
+Then navigate you browser to `0.0.0.0:8000` to test the game.
 
 ## Extra features
 In going beyond the [instructions][1] I added the following features:
